@@ -54,13 +54,3 @@ class User:
         query_data = (int(next_update_time), self.email,)
         database.update_database(query_text=query_text, query_data=query_data)
 
-
-if __name__ == '__main__':
-    from database_api import DatabaseAPI
-
-    db = DatabaseAPI('News_Aggregator_Database.db')
-    us = User('new_user', name='Bob McBob', email='bobMcBob2@gmail.com', category='Sports', timing='ASAP',
-              timing_day='1', timing_hour='1', last_update=1, next_update=1)
-    db.add_user(us)
-
-    # us2 = User('database', db=db, email='bobMcBob@gmail.com')

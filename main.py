@@ -3,21 +3,18 @@ from news_aggregator import NewsAggregator
 from user import User
 from notifier import Notifier
 import datetime as dt
-
-import utils
 import time
 
 LOOP_INTERVAL = 60
 database = DatabaseAPI('News_Aggregator_Database.db')
 
 date_started = '20:47, 02.10.22'
-utils.populate_user_database(database)
 url = 'https://www.ynetnews.com/category/3089'
 ynet_scrapper = NewsAggregator(url, 'ynet', database)
 last_added_article = database.query_database(
     query_text='SELECT date_time FROM article ORDER BY date_time DESC LIMIT 1')
 if len(last_added_article) == 0:
-    last_added_article = 2202120816
+    last_added_article = 1
 else:
     last_added_article = last_added_article[0][0]
 

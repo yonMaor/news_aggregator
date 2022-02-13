@@ -24,7 +24,7 @@ class NewsAggregator(Scraper):
             date_time = dt.datetime.strptime(date_time, '%H:%M, %m.%d.%y')
             date_time = int(date_time.strftime('%y%m%d%H%M'))
             article_is_new = self.compare_date_time(date_time, last_date_time)
-            if article_is_new: #Article hasn't been added yet
+            if article_is_new:  # Article hasn't been added yet
                 article = NewsArticle(link, title, date_time, self.categories, self.news_source)
                 self.database.add_news_article(article)
             else:
@@ -35,11 +35,3 @@ class NewsAggregator(Scraper):
         if date_time > last_date_time:
             return True
         return False
-
-
-if __name__ == '__main__':
-    from database_api import DatabaseAPI
-
-    db = DatabaseAPI('News_Aggregator_Database.db')
-    bla = NewsAggregator('D:\Yonatan\Projects\newsAggregator\3089.htm', 'ynet', db)
-    bla.get_news_articles(1)
